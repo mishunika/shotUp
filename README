@@ -1,0 +1,3 @@
+  This little bash script helps you to grab screenshots and upload them on
+imgur.com as an authenticated user. This script has some dependencies:
+ curl scrot xsel
