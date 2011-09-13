@@ -2,18 +2,19 @@
 
 ## yet another screenshots grabber and uploader - shotUp
 # idea from: http://blog.flienteen.com/2010/08/iuf-linux-image-uploader-v15.html
-username='name@gmail.com'			# your username goes there
-password='supermegasecretpassword'	# your password goes there
+
+username='name@gmail.com'               # your username goes there
+password='supermegasecretpassword'      # your password goes there
 
 curlOpt=' -s -b cookies.txt -c cookies.txt  -A "Mozilla/5.0 " '
 main_page=$(curl $curlOpt http://imgur.com/)
 status=$(echo $main_page | sed -n 's/.*id="logged-in"><strong class="green">\([^"]*\)<\/strong>.*/\1/p')
 
 if [ -z "$status" ]; then
-	curl $curlOpt -d "username=$username&password=$password&remember=remember&submit=Continue" 'http://imgur.com/signin' > /dev/null
+    curl $curlOpt -d "username=$username&password=$password&remember=remember&submit=Continue" 'http://imgur.com/signin' > /dev/null
 
-	main_page=$(curl $curlOpt http://imgur.com/)
-	status=$(echo $main_page | sed -n 's/.*id="logged-in"><strong class="green">\([^"]*\)<\/strong>.*/\1/p')
+    main_page=$(curl $curlOpt http://imgur.com/)
+    status=$(echo $main_page | sed -n 's/.*id="logged-in"><strong class="green">\([^"]*\)<\/strong>.*/\1/p')
 fi
 
 if [ -z "$status" ]
